@@ -1,11 +1,14 @@
-/* criar um vetor com notas, de (0-20), e depois aumentar as notas em 1 valor, (ignorar caso a nota seja 20) */
+; percorrer vetor com 10 numeros
+; se for impar -> substituir por 0            se for par -> multiplicar por 2
+; guardar a quantidade de numeros alterados para 0 na variavel ContadorZeros
 .8086
 .model  small
 .stack  2048
 
 dseg    segment para public 'data'
     ; --- DEFINICAO DE VARIAVEIS ---
-    vetor DB 12, 7, 11, 16, 9, 19, 20, 15, -1
+    vetor DB 1,2,3,4,5,6,7,8,9,10
+    ContadorZeros DB 0
     
 dseg    ends
 
@@ -19,23 +22,27 @@ main    proc
 
     ; --- O TEU CODIGO COMECA AQUI ---
     xor SI, SI
-    
-    ; comecamos o codigo
+    mov CX, 10
+
 inicio:
-    mov AL, vetor[SI]
+   mov AL, vetor[SI]
+   test AL, 1
+   JZ par
 
-    cmp AL, -1
-    JE fim
+   ; se for impar vai:
+   mov AL, 0
+   inc ContadorZeros
+   mov vetor[SI], AL
+   JMP proximo;
 
-    cmp AL, 20
-    JAE proximo
-
-    inc AL
-    mov vetor[SI], AL
+par:
+   add AL, AL
+   mov vetor[SI], AL
+   JMP proximo
 
 proximo:
-   INC SI
-   JMP inicio
+   inc SI
+   loop inicio
 
     ; --- O TEU CODIGO TERMINA AQUI ---
 

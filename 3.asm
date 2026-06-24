@@ -1,11 +1,13 @@
-/* criar um vetor com notas, de (0-20), e depois aumentar as notas em 1 valor, (ignorar caso a nota seja 20) */
+; vetor com 5 idades, vetor desconto com 5 indices, se idade[SI] for >= 65, desconto[SI] = 1, 0 c.c.
+
 .8086
 .model  small
 .stack  2048
 
 dseg    segment para public 'data'
     ; --- DEFINICAO DE VARIAVEIS ---
-    vetor DB 12, 7, 11, 16, 9, 19, 20, 15, -1
+    idades db 18, 67, 69, 23, 44
+    desconto db 5 dup (?)
     
 dseg    ends
 
@@ -19,23 +21,25 @@ main    proc
 
     ; --- O TEU CODIGO COMECA AQUI ---
     xor SI, SI
-    
-    ; comecamos o codigo
+    mov CX, 5
+
 inicio:
-    mov AL, vetor[SI]
+    mov al, idades[SI]
+    cmp al, 65
 
-    cmp AL, -1
-    JE fim
+    JAE maior
 
-    cmp AL, 20
-    JAE proximo
+    mov desconto[SI], 0
+    JMP proximo
 
-    inc AL
-    mov vetor[SI], AL
+
+maior:
+    mov desconto[SI], 1
+    JMP proximo
 
 proximo:
-   INC SI
-   JMP inicio
+    inc SI
+    loop inicio
 
     ; --- O TEU CODIGO TERMINA AQUI ---
 
