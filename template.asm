@@ -1,3 +1,6 @@
+; Gabriel Peclat dos Reis Costa, Eng. Informática
+; 2025140643, ISEC - PT
+
 .8086
 .model  small
 .stack  2048
@@ -26,4 +29,5 @@ fim:
 main    endp
 
 cseg    ends
-end     main
+end     main~
+

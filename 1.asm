@@ -1,4 +1,8 @@
-/* criar um vetor com notas, de (0-20), e depois aumentar as notas em 1 valor, (ignorar caso a nota seja 20) */
+; Gabriel Peclat dos Reis Costa, Eng. Informática
+; 2025140643, ISEC - PT
+
+; criar um vetor com notas, de (0-20), e depois aumentar as notas em 1 valor, (ignorar caso a nota seja 20) 
+
 .8086
 .model  small
 .stack  2048

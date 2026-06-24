@@ -1,6 +1,10 @@
+; Gabriel Peclat dos Reis Costa, Eng. Informática
+; 2025140643, ISEC - PT
+
 ; percorrer vetor com 10 numeros
 ; se for impar -> substituir por 0            se for par -> multiplicar por 2
 ; guardar a quantidade de numeros alterados para 0 na variavel ContadorZeros
+
 .8086
 .model  small
 .stack  2048

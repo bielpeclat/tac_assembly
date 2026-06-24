@@ -1,3 +1,6 @@
+; Gabriel Peclat dos Reis Costa, Eng. Informática
+; 2025140643, ISEC - PT
+
 ; vetor com 5 idades, vetor desconto com 5 indices, se idade[SI] for >= 65, desconto[SI] = 1, 0 c.c.
 
 .8086
