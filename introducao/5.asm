@@ -20,8 +20,8 @@ dseg    segment para public 'data'
     media       dw 0                ; resultado da media
     n_passaram  db 0                ; divisor para calcular a media
     soma        dw 0                ; acumulador para media
-    melhor_nota db -1               ; guardar valor da maior nota
-    melhor_aluno db -1              ; id do aluno com maior nota
+    melhor_nota db 0                ; guardar valor da maior nota
+    melhor_aluno dw 0               ; id do aluno com maior nota
 
 dseg    ends
 
@@ -52,7 +52,9 @@ inicio:
     JBE pulo1
 
     mov melhor_nota, bl
-    mov melhor_aluno, alunos[SI]
+
+    mov ax, alunos[SI]
+    mov melhor_aluno, ax
 
 pulo1:
 
@@ -61,7 +63,6 @@ pulo1:
 
     ; adicionamos para a variavel acumuladora
     xor bh, bh
-    mov bl, notas[DI]
     add soma, bx
     inc n_passaram
 
