@@ -8,7 +8,6 @@
 dseg    segment para public 'data'
     ; --- DEFINICAO DE VARIAVEIS ---
     
-dseg    ends
 
 cseg    segment para public 'code'
     assume  cs:cseg, ds:dseg
