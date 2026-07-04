@@ -26,24 +26,58 @@ VERIFICA_DIAGONAL proc
     mul bl
     add di, ax ; agora di tem o offset da primeira letra
 
-    mov bp, di ; memoria de video
+    mov bp, di ; offset grid
     mov bx, si ; vetor palavra
 
-    mov cx, 1
 
-comparar:
-    mov al, es:[di]
+    ; vamos verificar a posicao que nos foi dada
+    mov al, [si]
+    cmp al, es:[di]
+    jne nao_encontrado
+
+    ; salvar as posicoes iniciais
+    inc si
+    mov bp, di ; offset grid
+    mov bx, si ; vetor palavra
+
+    mov cx, 4
+
+nova_direcao:
+    mov di, bp
+    mov si, bx
+
+obter_letra:
+    mov al, [si]
     cmp al, '$'
-    je encontrou
+    je encontrado
 
-    cmp al, [si]
+    cmp cx, 4
+    je cima_dir
+
+    cmp cx, 3
+    je baixo_dir
+
+    cmp cx, 2
+    je baixo_esq
     
+    cmp cx, 1
+    je cima_esq
 
-prox_iteracao:
+cima_dir:
+    sub di, 158
+    jmp compara_letra
+
+compara_letra:
+    cmp al, es:[di]
+    jne 
 
 
-encontrou:
+nao_encontrado:
+    mov ah, 0
+    jmp fim_reg
 
+encontrado:
+    mov ah, 1
 
 fim_reg:
     pop dx
