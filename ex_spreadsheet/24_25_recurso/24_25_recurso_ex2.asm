@@ -159,3 +159,54 @@ fim_reg:
     ; adicionar pop
     ret
 DesenhaBarraSimples endp
+
+
+
+
+
+; ###################################################################################
+; iv.               implementar procedimento EscreveNumero
+
+EscreveNumero proc
+    ; adicionar push
+
+    ; bl tem o numero de notas
+
+    ; 1. vamos obter o offset de onde vamos escrever a nota
+    mov al, linha
+    dec al
+    mov ah, 160
+    mul ah
+    mov di, ax ; DI tem o offset da linha, na coluna 0
+
+    add di, 2 ; pular a primeira coluna do caracter da nota
+
+    ; agora vamos pular todos os 'X'
+    ; bl contem a quantidade de notas
+    mov al, bl
+    mov ah, 2
+    mul ah
+    add di, ax ; agora di ja esta na coluna correta, no byte exato que vamos escrever o primeiro caracter
+
+    ; se chegamos aqui, bl > 9
+    xor ah, ah
+    mov al, bl
+    mov bh, 10
+
+    div bh ; ah -> resto        al -> resultado
+
+    add ah, 30h
+    add al, 30h
+
+    mov es:[di], al
+    mov es:[di+1], 01110000b
+
+    add di, 2
+
+    mov es:[di], ah
+    mov es:[di+1], 01110000b
+
+fim_reg:
+    ; adicionar pop
+    ret
+EscreveNumero endp
