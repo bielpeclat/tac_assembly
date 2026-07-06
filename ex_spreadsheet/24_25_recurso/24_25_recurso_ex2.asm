@@ -40,7 +40,7 @@ end     main
 
 
 ; ###################################################################################
-; i. criacao do procedimento CLassificarNotas
+; i.                criacao do procedimento CLassificarNotas
 
 ClassificarNotas proc ; apenas iterar o array, e aumentar os contadores
     ; adicionar push
@@ -90,7 +90,7 @@ ClassificarNotas endp
 
 
 ; ###################################################################################
-; implementacao do procedimento EscreveLetra
+; ii.               implementacao do procedimento EscreveLetra
 
 EscreveLetra proc
     ; adicionar push
@@ -123,5 +123,39 @@ EscreveLetra endp
 
 
 ; ###################################################################################
-; implementacao do procedimento DesenhaBarraSimples
+; iii.              implementacao do procedimento DesenhaBarraSimples
 
+DesenhaBarraSimples proc
+    ; adicionar push
+
+    ; bl contem o numero de vezes que devemos escrever o 'X'
+    ; linha contem a linha que devemos escrever (index 1)
+
+    cmp bl, 0 ; evitar problemas, se nao precisamos escrever nenhum caracter, podemos ir para o fim logo
+    je fim_reg
+
+    ; 1. vamos obter o offset 
+    mov al, linha
+    dec al
+    mov ah, 160
+    mul ah
+    add ax, 2
+    mov di, ax ; DI contem o local onde vamos comecar a escrever
+
+    ; 2. loop para escrever os 'X'
+    xor bh, bh
+    mov cx, bx
+
+    mov al, 'X'
+    mov ah, 01110000b
+
+escrever:
+    mov es:[di], ax
+
+    add DI, 2
+    loop escrever
+
+fim_reg:
+    ; adicionar pop
+    ret
+DesenhaBarraSimples endp
