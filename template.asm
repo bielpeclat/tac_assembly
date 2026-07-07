@@ -28,5 +28,5 @@ fim:
 main    endp
 
 cseg    ends
-end     main~
+end     main
 
