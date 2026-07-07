@@ -7,12 +7,8 @@
 
 dseg    segment para public 'data'
     ; --- DEFINICAO DE VARIAVEIS ---
-<<<<<<< HEAD
-    
-=======
     vetor1 db 29,2,6,10,12,25,7,11,100,23
     vetor2 db 10 dup (?)
->>>>>>> 204fb7a02250f51e98e3679398a17f16610122c7
 
 cseg    segment para public 'code'
     assume  cs:cseg, ds:dseg
@@ -23,10 +19,6 @@ main    proc
     mov     ds, ax
 
     ; --- O TEU CODIGO COMECA AQUI ---
-<<<<<<< HEAD
-
-
-=======
     xor ah, ah
     mov dl, 0
 
@@ -73,7 +65,6 @@ prox_num:
     inc dl ; contador ate 10 de seguranca
     jmp obter_num
  
->>>>>>> 204fb7a02250f51e98e3679398a17f16610122c7
     ; --- O TEU CODIGO TERMINA AQUI ---
 
 fim:
